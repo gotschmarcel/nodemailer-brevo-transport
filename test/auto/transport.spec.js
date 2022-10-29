@@ -213,6 +213,23 @@ describe("Transport", function () {
         );
     });
 
+    it("template", function (done) {
+        expectRequest({});
+
+        transporter.sendMail(
+            {
+                templateId: 2,
+                to: "receiver@test",
+            },
+            (err) => {
+                if (err) {
+                    return done(err);
+                }
+                done();
+            }
+        );
+    });
+
     [
         {
             attachment: { path: `${__dirname}/data/file.txt` },
