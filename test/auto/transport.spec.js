@@ -28,31 +28,31 @@ const BASIC_ENVELOPE_BODY = {
     templateId: "some-templateId",
     attachment: [
         {
-            filename: "file.txt",
+            name: "file.txt",
             content: ATTACHMENT_CONTENT_BASE64,
         },
         {
-            filename: "file2.txt",
+            name: "file2.txt",
             content: ATTACHMENT_CONTENT_BASE64,
         },
         {
-            filename: "file3.txt",
+            name: "file3.txt",
             content: ATTACHMENT_CONTENT_BASE64,
         },
         {
-            filename: "file4.txt",
+            name: "file4.txt",
             content: ATTACHMENT_CONTENT_BASE64,
         },
         {
-            filename: "file5.txt",
+            name: "file5.txt",
             url: "https://raw.github.com/nodemailer/nodemailer/master/LICENSE",
         },
         {
-            filename: "file6.txt",
+            name: "file6.txt",
             content: ATTACHMENT_CONTENT_BASE64,
         },
         {
-            filename: "file7.txt",
+            name: "file7.txt",
             content: ATTACHMENT_CONTENT_BASE64,
         },
     ],
