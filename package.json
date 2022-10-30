@@ -1,34 +1,38 @@
 {
-  "name": "nodemailer-sendinblue-transport",
-  "version": "1.2.3",
-  "description": "Nodemailer Transport Module for Sendinblue",
-  "main": "lib/nodemailer-sendinblue-transport.js",
-  "scripts": {
-    "test": "mocha",
-    "prepublish": "jscs . && jshint lib/nodemailer-sendinblue-transport.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gotschmarcel/nodemailer-sendinblue-transport.git"
-  },
-  "keywords": [
-    "nodemailer",
-    "sendinblue"
-  ],
-  "author": "Marcel Gotsch",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport/issues"
-  },
-  "homepage": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport#readme",
-  "devDependencies": {
-    "jscs": "^2.11.0",
-    "jshint": "^2.9.1",
-    "mocha": "^3.2.0",
-    "nodemailer": "^2.6.4"
-  },
-  "dependencies": {
-    "addressparser": "^1.0.1",
-    "promise": "^7.1.1"
-  }
+    "name": "nodemailer-sendinblue-transport",
+    "version": "2.0.0",
+    "description": "Nodemailer Transport Module for Sendinblue",
+    "main": "lib/transport.js",
+    "scripts": {
+        "test": "mocha test/auto/*.spec.js",
+        "prepublish": "npm run format:check && npm run lint:check && npm run test",
+        "format:check": "prettier --check lib test",
+        "format:fix": "prettier --write lib test",
+        "lint:check": "eslint lib test",
+        "lint:fix": "eslint --fix lib test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gotschmarcel/nodemailer-sendinblue-transport.git"
+    },
+    "keywords": [
+        "nodemailer",
+        "sendinblue"
+    ],
+    "author": "Marcel Gotsch",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport/issues"
+    },
+    "homepage": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport#readme",
+    "devDependencies": {
+        "chai": "^4.3.6",
+        "eslint": "^8.26.0",
+        "eslint-config-prettier": "^8.5.0",
+        "mocha": "^10.1.0",
+        "nock": "^13.2.9",
+        "nodemailer": "^6.8.0",
+        "prettier": "^2.7.1",
+        "yargs": "^17.6.0"
+    }
 }
