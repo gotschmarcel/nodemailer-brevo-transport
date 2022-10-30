@@ -214,7 +214,10 @@ describe("Transport", function () {
     });
 
     it("template", function (done) {
-        expectRequest({});
+        expectRequest({
+            templateId: 2,
+            to: ["receiver@test"]
+        });
 
         transporter.sendMail(
             {
