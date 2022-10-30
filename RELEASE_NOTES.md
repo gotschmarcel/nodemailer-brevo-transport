@@ -3,6 +3,7 @@
 ## v2.0.0
 
 -   Support for Sendinblue v3
+-   Templates
 -   Dependency free
 
 ## v1.2.3
