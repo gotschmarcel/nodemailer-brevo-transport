@@ -26,6 +26,8 @@ const BASIC_ENVELOPE_BODY = {
     htmlContent: "<div>Test HTML Content</div>",
     params: { a: "value" },
     templateId: "some-templateId",
+    tags: { a: "tag" },
+    batchId: "5c6cfa04-eed9-42c2-8b5c-6d470d978e9d",
     attachment: [
         {
             name: "file.txt",
@@ -68,6 +70,8 @@ const basic_envelope = () => ({
     text: "Test Content",
     html: "<div>Test HTML Content</div>",
     params: { a: "value" },
+    tags: { a: "tag" },
+    batchId: "5c6cfa04-eed9-42c2-8b5c-6d470d978e9d",
     templateId: "some-templateId",
     attachments: [
         {
