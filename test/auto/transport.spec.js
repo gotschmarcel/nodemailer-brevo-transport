@@ -216,7 +216,7 @@ describe("Transport", function () {
     it("template", function (done) {
         expectRequest({
             templateId: 2,
-            to: ["receiver@test"]
+            to: ["receiver@test"],
         });
 
         transporter.sendMail(
@@ -231,6 +231,17 @@ describe("Transport", function () {
                 done();
             }
         );
+    });
+
+    it("missing fields", function (done) {
+        expectRequest({});
+
+        transporter.sendMail({}, (err) => {
+            if (err) {
+                return done(err);
+            }
+            done();
+        });
     });
 
     [
