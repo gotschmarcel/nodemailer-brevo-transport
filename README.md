@@ -11,14 +11,14 @@ Install with npm
 Require the module
 
 ```javascript
-var nodemailer = require("nodemailer");
-var Transport = require("nodemailer-sendinblue-transport");
+const nodemailer = require("nodemailer");
+const Transport = require("nodemailer-sendinblue-transport");
 ```
 
 Create a Nodemailer transporter
 
 ```javascript
-var transporter = nodemailer.createTransport(
+const transporter = nodemailer.createTransport(
     new Transport({ apiKey: "my-api-key" })
 );
 ```
