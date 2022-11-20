@@ -18,11 +18,15 @@ const ATTACHMENT_CONTENT_BASE64 =
 const BASIC_ENVELOPE_BODY = {
     sender: { email: "sender@test" },
     to: [{ email: "receiver@test" }],
+    subject: "Test Subject",
+    textContent: "Test Content",
+};
+
+const FULL_ENVELOPE_BODY = {
+    ...BASIC_ENVELOPE_BODY,
     cc: [{ email: "cc1@test" }, { name: "CC2", email: "cc2@test" }],
     bcc: [{ email: "bcc1@test", name: "BCC1" }],
     replyTo: [{ email: "replyto@test" }],
-    subject: "Test Subject",
-    textContent: "Test Content",
     htmlContent: "<div>Test HTML Content</div>",
     params: { a: "value" },
     templateId: "some-templateId",
@@ -60,14 +64,18 @@ const BASIC_ENVELOPE_BODY = {
     ],
 };
 
-const basic_envelope = () => ({
+const BASIC_ENVELOPE = {
     from: "sender@test",
     to: "receiver@test",
+    subject: "Test Subject",
+    text: "Test Content",
+};
+
+const full_envelope = () => ({
+    ...BASIC_ENVELOPE,
     cc: "cc1@test, CC2 <cc2@test>",
     bcc: { address: "bcc1@test", name: "BCC1" },
     replyTo: "replyto@test",
-    subject: "Test Subject",
-    text: "Test Content",
     html: "<div>Test HTML Content</div>",
     params: { a: "value" },
     tags: { a: "tag" },
@@ -139,10 +147,10 @@ describe("Transport", function () {
 
     it("basic mail", function (done) {
         expectRequest({
-            body: BASIC_ENVELOPE_BODY,
+            body: FULL_ENVELOPE_BODY,
         });
 
-        transporter.sendMail(basic_envelope(), (err, info) => {
+        transporter.sendMail(full_envelope(), (err, info) => {
             if (err) {
                 return done(err);
             }
@@ -157,7 +165,7 @@ describe("Transport", function () {
     it("scheduled response", function (done) {
         expectRequest({ replyCode: RESPONSE_STATUS_SCHEDULED });
 
-        transporter.sendMail(basic_envelope(), (err, info) => {
+        transporter.sendMail(full_envelope(), (err, info) => {
             if (err) {
                 return done(err);
             }
@@ -173,7 +181,7 @@ describe("Transport", function () {
             replyBody: { message: "some error message", code: "some_code" },
         });
 
-        transporter.sendMail(basic_envelope(), (err) => {
+        transporter.sendMail(full_envelope(), (err) => {
             expect(err).to.be.an("error");
             expect(err.message).to.contain("some error message");
             expect(err.message).to.contain("some_code");
@@ -184,7 +192,7 @@ describe("Transport", function () {
     it("error response with missing fields", function (done) {
         expectRequest({ replyCode: 400, replyBody: {} });
 
-        transporter.sendMail(basic_envelope(), (err) => {
+        transporter.sendMail(full_envelope(), (err) => {
             expect(err).to.be.an("error");
             expect(err.message).to.contain("invalid response");
             expect(err.message).to.contain("undefined");
@@ -195,7 +203,7 @@ describe("Transport", function () {
     it("invalid error response", function (done) {
         expectRequest({ replyCode: 400 });
 
-        transporter.sendMail(basic_envelope(), (err) => {
+        transporter.sendMail(full_envelope(), (err) => {
             expect(err).to.be.an("error");
             expect(err.message).to.contain("invalid response");
             expect(err.message).to.contain("undefined");
@@ -206,7 +214,7 @@ describe("Transport", function () {
     it("multiple senders", function (done) {
         transporter.sendMail(
             {
-                ...basic_envelope(),
+                ...full_envelope(),
                 from: "sender1@test, sender2@test",
             },
             (err) => {
@@ -248,6 +256,25 @@ describe("Transport", function () {
         });
     });
 
+    it("empty attachments", function (done) {
+        expectRequest({
+            body: BASIC_ENVELOPE_BODY,
+        });
+
+        transporter.sendMail(
+            {
+                ...BASIC_ENVELOPE,
+                attachments: [],
+            },
+            (err) => {
+                if (err) {
+                    return done(err);
+                }
+                done();
+            }
+        );
+    });
+
     [
         {
             attachment: { path: `${__dirname}/data/file.txt` },
@@ -272,7 +299,7 @@ describe("Transport", function () {
         it(`invalid attachment (${index})`, function (done) {
             transporter.sendMail(
                 {
-                    ...basic_envelope(),
+                    ...full_envelope(),
                     attachments: [data.attachment],
                 },
                 (err) => {

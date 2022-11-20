@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.0.1
+
+-   Fixes that sending a mail with an empty attachment array is rejected by Sendinblue
+
 ## v2.0.0
 
 -   Support for Sendinblue v3
