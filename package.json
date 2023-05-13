@@ -1,7 +1,7 @@
 {
-    "name": "nodemailer-sendinblue-transport",
+    "name": "nodemailer-brevo-transport",
     "version": "2.0.1",
-    "description": "Nodemailer Transport Module for Sendinblue",
+    "description": "Nodemailer Transport Module for Brevo",
     "main": "lib/transport.js",
     "scripts": {
         "test": "mocha test/auto/*.spec.js",
@@ -13,18 +13,18 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/gotschmarcel/nodemailer-sendinblue-transport.git"
+        "url": "git+https://github.com/gotschmarcel/nodemailer-brevo-transport.git"
     },
     "keywords": [
         "nodemailer",
-        "sendinblue"
+        "brevo"
     ],
     "author": "Marcel Gotsch",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport/issues"
+        "url": "https://github.com/gotschmarcel/nodemailer-brevo-transport/issues"
     },
-    "homepage": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport#readme",
+    "homepage": "https://github.com/gotschmarcel/nodemailer-brevo-transport#readme",
     "devDependencies": {
         "chai": "^4.3.6",
         "eslint": "^8.26.0",

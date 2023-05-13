@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 
 const Transport = require("../../lib/transport");
 
-const API_URL = "https://api.sendinblue.com/v3/smtp/email";
+const API_URL = "https://api.brevo.com/v3/smtp/email";
 const TEST_API_KEY = "test-api-key";
 const RESPONSE_STATUS_SENT = 201;
 const RESPONSE_STATUS_SCHEDULED = 202;
