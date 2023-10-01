@@ -2,11 +2,11 @@
 
 ## v2.0.1
 
--   Fixes that sending a mail with an empty attachment array is rejected by Sendinblue
+-   Fixes that sending a mail with an empty attachment array is rejected by Brevo
 
 ## v2.0.0
 
--   Support for Sendinblue v3
+-   Support for Brevo v3
 -   Templates
 -   Dependency free
 
@@ -20,7 +20,7 @@
 
 ## v1.2.0
 
--   The option apiUrl now defaults to "https://api.sendinblue.com/v2.0"
+-   The option apiUrl now defaults to "https://api.brevo.com/v2.0"
 -   Support for attachments added
 -   Not having a `replyTo` address no longer causes an exception
 -   Support for custom headers added

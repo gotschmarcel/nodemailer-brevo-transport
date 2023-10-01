@@ -1,8 +1,9 @@
 {
-    "name": "nodemailer-sendinblue-transport",
-    "version": "2.0.1",
-    "description": "Nodemailer Transport Module for Sendinblue",
+    "name": "nodemailer-brevo-transport",
+    "version": "2.1.0",
+    "description": "Nodemailer Transport Module for Brevo",
     "main": "lib/transport.js",
+    "types": "lib/transport.d.ts",
     "scripts": {
         "test": "mocha test/auto/*.spec.js",
         "prepublish": "npm run format:check && npm run lint:check && npm run test",
@@ -13,26 +14,26 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/gotschmarcel/nodemailer-sendinblue-transport.git"
+        "url": "git+https://github.com/gotschmarcel/nodemailer-brevo-transport.git"
     },
     "keywords": [
         "nodemailer",
-        "sendinblue"
+        "brevo"
     ],
     "author": "Marcel Gotsch",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport/issues"
+        "url": "https://github.com/gotschmarcel/nodemailer-brevo-transport/issues"
     },
-    "homepage": "https://github.com/gotschmarcel/nodemailer-sendinblue-transport#readme",
+    "homepage": "https://github.com/gotschmarcel/nodemailer-brevo-transport#readme",
     "devDependencies": {
-        "chai": "^4.3.6",
-        "eslint": "^8.26.0",
-        "eslint-config-prettier": "^8.5.0",
-        "mocha": "^10.1.0",
-        "nock": "^13.2.9",
-        "nodemailer": "^6.8.0",
-        "prettier": "^2.7.1",
-        "yargs": "^17.6.0"
+        "chai": "4.3.10",
+        "eslint": "8.50.0",
+        "eslint-config-prettier": "9.0.0",
+        "mocha": "10.2.0",
+        "nock": "13.3.3",
+        "nodemailer": "6.9.5",
+        "prettier": "3.0.3",
+        "yargs": "17.7.2"
     }
 }
