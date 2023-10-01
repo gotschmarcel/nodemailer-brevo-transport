@@ -10,7 +10,7 @@ const args = yargs(process.argv.slice(2))
     .usage(
         "usage: $0 --apikey [key] --to [to] --from [from] --attachment --template"
     )
-    .demandOption(["apikey", "to"]).argv;
+    .demandOption(["apikey", "to", "from"]).argv;
 
 const transporter = nodemailer.createTransport(
     new Transport({ apiKey: args.apikey })
