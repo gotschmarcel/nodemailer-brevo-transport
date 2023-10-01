@@ -1,5 +1,10 @@
 # Release Notes
 
+## v2.1.0
+
+-   Rebranded to Brevo
+-   Added typescript support
+
 ## v2.0.1
 
 -   Fixes that sending a mail with an empty attachment array is rejected by Brevo
