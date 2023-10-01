@@ -23,6 +23,10 @@ const transporter = nodemailer.createTransport(
 );
 ```
 
+## Inline Images
+
+Embedding inline images requires the image to be hosted and available via an absolute URL. The image URL and size properties can be injected into the HTML content through parameters. Take a look at `test/manual/send-inline-image.js` for an example.
+
 ## License
 
 **MIT**
