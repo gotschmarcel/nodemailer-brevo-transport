@@ -13,18 +13,18 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/circles-00/nodemailer-brevo-transport.git"
+        "url": "git+https://github.com/gotschmarcel/nodemailer-brevo-transport.git"
     },
     "keywords": [
         "nodemailer",
         "brevo"
     ],
-    "author": "Nikola Krezeski",
+    "author": "Marcel Gotsch",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/circles-00/nodemailer-brevo-transport/issues"
+        "url": "https://github.com/gotschmarcel/nodemailer-brevo-transport/issues"
     },
-    "homepage": "https://github.com/circles-00/nodemailer-brevo-transport#readme",
+    "homepage": "https://github.com/gotschmarcel/nodemailer-brevo-transport#readme",
     "devDependencies": {
         "chai": "4.3.6",
         "eslint": "8.26.0",
