@@ -1,18 +1,18 @@
-# Sendinblue Transport Module for Nodemailer
+# Brevo Transport Module for Nodemailer
 
-This module applies for [Nodemailer](http://www.nodemailer.com/) v6+ and provides a transport for [Sendinblue v3](https://www.sendinblue.com).
+This module applies for [Nodemailer](http://www.nodemailer.com/) v6+ and provides a transport for [Brevo v3](https://www.brevo.com).
 
 ## Usage
 
 Install with npm
 
-    npm install nodemailer-sendinblue-transport
+    npm install nodemailer-brevo-transport
 
 Require the module
 
 ```javascript
 const nodemailer = require("nodemailer");
-const Transport = require("nodemailer-sendinblue-transport");
+const Transport = require("nodemailer-brevo-transport");
 ```
 
 Create a Nodemailer transporter
