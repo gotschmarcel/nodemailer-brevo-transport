@@ -1,6 +1,6 @@
 {
     "name": "nodemailer-brevo-transport",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Nodemailer Transport Module for Brevo",
     "main": "lib/transport.js",
     "types": "lib/transport.d.ts",
@@ -27,13 +27,13 @@
     },
     "homepage": "https://github.com/gotschmarcel/nodemailer-brevo-transport#readme",
     "devDependencies": {
-        "chai": "4.3.10",
-        "eslint": "8.50.0",
-        "eslint-config-prettier": "9.0.0",
-        "mocha": "10.2.0",
-        "nock": "13.3.3",
-        "nodemailer": "6.9.5",
-        "prettier": "3.0.3",
+        "chai": "4.5.0",
+        "eslint": "9.21.0",
+        "eslint-config-prettier": "10.0.2",
+        "mocha": "11.1.0",
+        "nock": "14.0.1",
+        "nodemailer": "6.10.0",
+        "prettier": "3.5.3",
         "yargs": "17.7.2"
     }
 }
