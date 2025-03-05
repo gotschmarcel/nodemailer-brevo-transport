@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.1.1
+
+-   Fixed wrong message ID returned (thanks Michal Martinek)
+
 ## v2.1.0
 
 -   Rebranded to Brevo
