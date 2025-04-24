@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.2.0
+
+-   Added senderIP transport option (contributed by MichalMartinek)
+
 ## v2.1.1
 
 -   Fixed wrong message ID returned (thanks Michal Martinek)
