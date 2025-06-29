@@ -1,6 +1,6 @@
 {
     "name": "nodemailer-brevo-transport",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "Nodemailer Transport Module for Brevo",
     "main": "lib/transport.js",
     "types": "lib/transport.d.ts",

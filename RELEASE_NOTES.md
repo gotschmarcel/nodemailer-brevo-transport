@@ -1,5 +1,9 @@
 # Release Notes
 
+## v2.2.1
+
+-   Fixed replyTo sent in the wrong format (thanks Erik Berglund)
+
 ## v2.2.0
 
 -   Added senderIP transport option (contributed by MichalMartinek)

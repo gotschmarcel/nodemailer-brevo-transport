@@ -26,7 +26,7 @@ const FULL_ENVELOPE_BODY = {
     ...BASIC_ENVELOPE_BODY,
     cc: [{ email: "cc1@test" }, { name: "CC2", email: "cc2@test" }],
     bcc: [{ email: "bcc1@test", name: "BCC1" }],
-    replyTo: [{ email: "replyto@test" }],
+    replyTo: { email: "replyto@test" },
     htmlContent: "<div>Test HTML Content</div>",
     params: { a: "value" },
     templateId: "some-templateId",
@@ -145,134 +145,109 @@ describe("Transport", function () {
         nock.disableNetConnect();
     });
 
-    it("basic mail", function (done) {
+    it("basic mail", function () {
         expectRequest({
             body: FULL_ENVELOPE_BODY,
         });
 
-        transporter.sendMail(full_envelope(), (err, info) => {
-            if (err) {
-                return done(err);
-            }
-
+        return transporter.sendMail(full_envelope()).then((info) => {
             expect(info).to.have.property("messageId");
             expect(info.envelope).to.have.property("from");
             expect(info.envelope).to.have.property("to");
-            done();
         });
     });
 
-    it("scheduled response", function (done) {
+    it("scheduled response", function () {
         expectRequest({ replyCode: RESPONSE_STATUS_SCHEDULED });
 
-        transporter.sendMail(full_envelope(), (err, info) => {
-            if (err) {
-                return done(err);
-            }
-
+        return transporter.sendMail(full_envelope()).then((info) => {
             expect(info).to.have.property("messageId");
-            done();
         });
     });
 
-    it("error response", function (done) {
+    it("error response", function () {
         expectRequest({
             replyCode: 400,
             replyBody: { message: "some error message", code: "some_code" },
         });
 
-        transporter.sendMail(full_envelope(), (err) => {
+        return transporter.sendMail(full_envelope()).catch((err) => {
             expect(err).to.be.an("error");
             expect(err.message).to.contain("some error message");
             expect(err.message).to.contain("some_code");
-            done();
         });
     });
 
-    it("error response with missing fields", function (done) {
+    it("error response with missing fields", function () {
         expectRequest({ replyCode: 400, replyBody: {} });
 
-        transporter.sendMail(full_envelope(), (err) => {
+        return transporter.sendMail(full_envelope()).catch((err) => {
             expect(err).to.be.an("error");
             expect(err.message).to.contain("invalid response");
             expect(err.message).to.contain("undefined");
-            done();
         });
     });
 
-    it("invalid error response", function (done) {
+    it("invalid error response", function () {
         expectRequest({ replyCode: 400 });
 
-        transporter.sendMail(full_envelope(), (err) => {
+        return transporter.sendMail(full_envelope()).catch((err) => {
             expect(err).to.be.an("error");
             expect(err.message).to.contain("invalid response");
             expect(err.message).to.contain("undefined");
-            done();
         });
     });
 
-    it("multiple senders", function (done) {
-        transporter.sendMail(
-            {
+    it("multiple senders", function () {
+        return transporter
+            .sendMail({
                 ...full_envelope(),
                 from: "sender1@test, sender2@test",
-            },
-            (err) => {
+            })
+            .catch((err) => {
                 expect(err).to.be.an("error");
                 expect(err.message).to.contain("multiple from");
-                done();
-            }
-        );
+            });
     });
 
-    it("template", function (done) {
+    it("multiple reply-to addresses", function () {
+        return transporter
+            .sendMail({
+                ...BASIC_ENVELOPE,
+                replyTo: ["sender1@test", "sender2@test"],
+            })
+            .catch((err) => {
+                expect(err).to.be.an("error");
+                expect(err.message).to.contain("multiple reply-to");
+            });
+    });
+
+    it("template", function () {
         expectRequest({
             templateId: 2,
             to: ["receiver@test"],
         });
 
-        transporter.sendMail(
-            {
-                templateId: 2,
-                to: "receiver@test",
-            },
-            (err) => {
-                if (err) {
-                    return done(err);
-                }
-                done();
-            }
-        );
-    });
-
-    it("missing fields", function (done) {
-        expectRequest({});
-
-        transporter.sendMail({}, (err) => {
-            if (err) {
-                return done(err);
-            }
-            done();
+        return transporter.sendMail({
+            templateId: 2,
+            to: "receiver@test",
         });
     });
 
-    it("empty attachments", function (done) {
+    it("missing fields", function () {
+        expectRequest({});
+        return transporter.sendMail({});
+    });
+
+    it("empty attachments", function () {
         expectRequest({
             body: BASIC_ENVELOPE_BODY,
         });
 
-        transporter.sendMail(
-            {
-                ...BASIC_ENVELOPE,
-                attachments: [],
-            },
-            (err) => {
-                if (err) {
-                    return done(err);
-                }
-                done();
-            }
-        );
+        return transporter.sendMail({
+            ...BASIC_ENVELOPE,
+            attachments: [],
+        });
     });
 
     [
@@ -296,18 +271,16 @@ describe("Transport", function () {
             error: "unsupported attachment",
         },
     ].forEach(function (data, index) {
-        it(`invalid attachment (${index})`, function (done) {
-            transporter.sendMail(
-                {
+        it(`invalid attachment (${index})`, function () {
+            return transporter
+                .sendMail({
                     ...full_envelope(),
                     attachments: [data.attachment],
-                },
-                (err) => {
+                })
+                .catch((err) => {
                     expect(err).to.be.an("error");
                     expect(err.message).to.contain(data.error);
-                    done();
-                }
-            );
+                });
         });
     });
 });
