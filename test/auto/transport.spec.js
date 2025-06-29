@@ -26,7 +26,7 @@ const FULL_ENVELOPE_BODY = {
     ...BASIC_ENVELOPE_BODY,
     cc: [{ email: "cc1@test" }, { name: "CC2", email: "cc2@test" }],
     bcc: [{ email: "bcc1@test", name: "BCC1" }],
-    replyTo: [{ email: "replyto@test" }],
+    replyTo: { email: "replyto@test" },
     htmlContent: "<div>Test HTML Content</div>",
     params: { a: "value" },
     templateId: "some-templateId",
@@ -224,6 +224,20 @@ describe("Transport", function () {
             }
         );
     });
+    
+    it("multiple replyTo addresses", function (done) {
+        transporter.sendMail(
+            {
+                ...BASIC_ENVELOPE,
+                replyTo: ["sender1@test", "sender2@test"],
+            },
+            (err) => {
+                expect(err).to.be.an("error");
+                expect(err.message).to.contain("multiple replyTo");
+                done();
+            }
+        );
+    });
 
     it("template", function (done) {
         expectRequest({
@@ -243,6 +257,17 @@ describe("Transport", function () {
                 done();
             }
         );
+    });
+
+    it("minimum fields", function (done) {
+        expectRequest(BASIC_ENVELOPE_BODY);
+
+        transporter.sendMail(BASIC_ENVELOPE, (err) => {
+            if (err) {
+                return done(err);
+            }
+            done();
+        });
     });
 
     it("missing fields", function (done) {
